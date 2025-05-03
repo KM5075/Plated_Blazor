@@ -1,14 +1,14 @@
-name: .NET Core アプリケーションを構築して Web アプリ PlatedBlazorClient20250503204150 にデプロイする
+name: .NET Core アプリケーションを構築して Web アプリ PlatedBlazor20250504080910 にデプロイする
 on:
   push:
-    # branches:
-    # - master
+    branches:
+      - EnviromentBuilding
 env:
-  AZURE_WEBAPP_NAME: PlatedBlazorClient20250503204150
-  AZURE_WEBAPP_PACKAGE_PATH: Plated_Blazor\Plated_Blazor.Client\published
+  AZURE_WEBAPP_NAME: PlatedBlazor20250504080910
+  AZURE_WEBAPP_PACKAGE_PATH: Plated_Blazor\Plated_Blazor\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 9.0.x
-  WORKING_DIRECTORY: Plated_Blazor\Plated_Blazor.Client
+  WORKING_DIRECTORY: Plated_Blazor\Plated_Blazor
 jobs:
   build:
     runs-on: windows-latest
