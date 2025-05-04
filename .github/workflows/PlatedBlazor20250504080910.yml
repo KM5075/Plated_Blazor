@@ -1,8 +1,7 @@
 name: .NET Core アプリケーションを構築して Web アプリ PlatedBlazor20250504080910 にデプロイする
 on:
   push:
-    branches:
-      - EnviromentBuilding
+
 env:
   AZURE_WEBAPP_NAME: PlatedBlazor20250504080910
   AZURE_WEBAPP_PACKAGE_PATH: Plated_Blazor\Plated_Blazor\published
@@ -32,6 +31,7 @@ jobs:
           name: webapp
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
   deploy:
+    if: github.ref == 'refs/heads/master' # masterブランチのみデプロイ
     runs-on: windows-latest
     needs: build
     steps:
