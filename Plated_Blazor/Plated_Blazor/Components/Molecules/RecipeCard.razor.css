@@ -2,7 +2,6 @@
     max-width: 290px;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 1px;
 }
 
 .card {
@@ -18,7 +17,6 @@
 .title {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
 }
 
 .tag {
@@ -27,5 +25,4 @@
     padding: 0.2rem;
     background-color: #007bff;
     border-radius: 4px;
-    /* margin-bottom: 0.5rem; */
 }
