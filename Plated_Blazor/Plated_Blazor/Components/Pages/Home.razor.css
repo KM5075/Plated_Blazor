@@ -1,0 +1,12 @@
+﻿.main {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 24px;
+}

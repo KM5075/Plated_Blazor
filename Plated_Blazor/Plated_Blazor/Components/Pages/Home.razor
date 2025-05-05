@@ -5,17 +5,24 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Plated</h1>
+<div class="main">
+    <div>
 
-<button>Add Recipe</button>
-<PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipe"/>
+        <h1>Plated</h1>
 
-<div>
-    <RecipeCard />
-    <RecipeCard />
+        <PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipe" />
+
+        <div class="flex-box">
+            <RecipeCard />
+            <RecipeCard />
+            <RecipeCard />
+            <RecipeCard />
+            <RecipeCard />
+        </div>
+    </div>
 </div>
 
-@code{
+@code {
     private void AddRecipe()
     {
         // Logic to add a new recipe
