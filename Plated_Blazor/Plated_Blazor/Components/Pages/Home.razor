@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+@using Plated_Blazor.Components.Atoms
 @using Plated_Blazor.Components.Molecules
 
 <PageTitle>Home</PageTitle>
@@ -7,8 +8,16 @@
 <h1>Plated</h1>
 
 <button>Add Recipe</button>
+<PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipe"/>
 
 <div>
-    <RecipeCard/>
-    <RecipeCard/>
+    <RecipeCard />
+    <RecipeCard />
 </div>
+
+@code{
+    private void AddRecipe()
+    {
+        // Logic to add a new recipe
+    }
+}
