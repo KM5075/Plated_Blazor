@@ -1,4 +1,7 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+
+@inject NavigationManager NavigationManager
 
 @using Plated_Blazor.Client.Components.Share.Atoms
 @using Plated_Blazor.Components.Molecules
@@ -10,7 +13,7 @@
 
         <h1 class="title">Plated</h1>
 
-        <PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipe" />
+        <PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipePage" />
 
         <div class="card-list">
             <RecipeCard />
@@ -24,8 +27,8 @@
 </div>
 
 @code {
-    private void AddRecipe()
+    private void AddRecipePage()
     {
-        // Logic to add a new recipe
+        NavigationManager.NavigateTo("/add-recipe");
     }
 }

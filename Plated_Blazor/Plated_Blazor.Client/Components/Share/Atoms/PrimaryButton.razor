@@ -7,8 +7,10 @@
 @code {
     [Parameter]
     public string ButtonText { get; set; }
+
     [Parameter]
     public EventCallback OnClick { get; set; }
+
     private async Task HandleClick()
     {
         await OnClick.InvokeAsync(null);

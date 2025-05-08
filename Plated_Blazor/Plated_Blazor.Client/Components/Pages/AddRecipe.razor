@@ -1,7 +1,16 @@
 ﻿@page "/add-recipe"
+@rendermode InteractiveWebAssembly
+@inject NavigationManager NavigationManager
+@using Plated_Blazor.Client.Components.Share.Atoms
 
 <h3>AddRecipe</h3>
 
+<PrimaryButton ButtonText="Home" OnClick="RedirectToHome"/>
+
 @code {
 
+    private void RedirectToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
 }
