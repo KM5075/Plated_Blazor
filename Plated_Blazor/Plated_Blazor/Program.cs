@@ -1,15 +1,20 @@
 using Plated_Blazor.Components;
+using Plated_Blazor.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container.  
 builder.Services.AddRazorComponents()
-    .AddInteractiveWebAssemblyComponents()
-    .AddInteractiveServerComponents();
+   .AddInteractiveWebAssemblyComponents()
+   .AddInteractiveServerComponents();
+
+builder.Services.AddDbContext<Planted_BlazorContext>(options =>
+   options.UseSqlite(builder.Configuration.GetConnectionString("Plated_BlazorContext") ?? throw new InvalidOperationException("Connection string 'Plated_BlazorContext' not found.")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.  
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -17,19 +22,18 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.  
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 
-
 app.UseAntiforgery();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(Plated_Blazor.Client._Imports).Assembly);
+   .AddInteractiveWebAssemblyRenderMode()
+   .AddInteractiveServerRenderMode()
+   .AddAdditionalAssemblies(typeof(Plated_Blazor.Client._Imports).Assembly);
 
 app.Run();
