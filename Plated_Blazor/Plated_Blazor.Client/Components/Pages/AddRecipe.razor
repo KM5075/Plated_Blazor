@@ -2,15 +2,63 @@
 @rendermode InteractiveWebAssembly
 @inject NavigationManager NavigationManager
 @using Plated_Blazor.Client.Components.Share.Atoms
+@using Plated_Blazor.Client.Models
 
-<h3>AddRecipe</h3>
+<div class="center">
+    <div>
+        <h1 class="page-title">AddRecipe</h1>
 
-<PrimaryButton ButtonText="Home" OnClick="RedirectToHome"/>
+        <EditForm Model="newRecipe" OnValidSubmit="AddRecipePage" FormName="Add">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label for="recipeTitle" class="form-lable">
+                    Title
+                </label>
+                <br />
+                <InputText id="recipeTitle" @bind-Value="newRecipe.Title" class="input-text" />
+                <ValidationMessage For="@(() => newRecipe.Title)" />
+            </div>
+            <div class="form-group">
+                <label for="recipeCateggory" class="form-lable">
+                    Category
+                </label>
+                <br />
+                <InputSelect id="recipeCategory" @bind-Value="newRecipe.Category" class="input-text">
+                    <option value="">Select a category</option>
+                    <option value="Pasta">Pasta</option>
+                    <option value="Curry">Curry</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Salada">Salad</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => newRecipe.Category)" />
+            </div>
+            <div class="form-group">
+                <label for="recipeMaterial" class="form-lable">
+                    Material
+                </label>
+                <br />
+                <InputText id="recipeMaterial" class="input-big-text" @bind-Value="newRecipe.Material" />
+                <ValidationMessage For="@(() => newRecipe.Material)" />
+            </div>
+
+            <SubmitButton ButtonText="Add" />
+            <PrimaryButton ButtonText="Home" OnClick="RedirectToHome" />
+        </EditForm>
+    </div>
+</div>
+
 
 @code {
+
+    private Recipe newRecipe = new Recipe();
 
     private void RedirectToHome()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    private void AddRecipePage()
+    {
+
     }
 }

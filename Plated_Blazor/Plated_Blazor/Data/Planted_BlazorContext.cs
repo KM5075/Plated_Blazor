@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Plated_Blazor.Models;
+using Plated_Blazor.Client.Models;
 
 namespace Plated_Blazor.Data;
 
