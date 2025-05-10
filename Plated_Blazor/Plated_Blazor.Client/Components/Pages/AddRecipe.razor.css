@@ -1,0 +1,38 @@
+﻿.center {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #4e3e2f;
+}
+
+.form-lable {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+::deep .input-text {
+    height: 50px;
+    width: 100%;
+    font-size: 1.2rem;
+    border: 2px solid #decbb7;
+    border-radius: 5px;
+}
+
+::deep .input-big-text {
+    height: 200px;
+    width: 100%;
+    font-size: 1.2rem;
+    border: 2px solid #decbb7;
+    border-radius: 5px;
+}
