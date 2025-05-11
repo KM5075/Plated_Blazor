@@ -1,5 +1,6 @@
 using Plated_Blazor.Components;
 using Plated_Blazor.Data;
+using Plated_Blazor.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,8 @@ else
 app.UseHttpsRedirection();
 
 app.UseAntiforgery();
+
+app.MapRecipeItemEndpoints();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
