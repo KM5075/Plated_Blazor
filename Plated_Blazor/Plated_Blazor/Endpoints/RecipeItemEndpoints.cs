@@ -8,7 +8,7 @@ public static class RecipeItemEndpoints
 {
     public static void MapRecipeItemEndpoints(this IEndpointRouteBuilder routes)
     {
-        routes.MapPost("/api/recipeitems", AddRecipeItems);
+        routes.MapPost("/api/recipe", AddRecipeItems);
     }
 
     public static async Task<Results<Created<Recipe>, BadRequest<string>>> AddRecipeItems(Recipe recipe, Planted_BlazorContext context)
