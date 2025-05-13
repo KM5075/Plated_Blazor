@@ -60,5 +60,27 @@
     private void AddRecipePage()
     {
 
+    private string SetColor(string category)
+    {
+        return category switch
+        {
+            "Pasta" => "teal",
+            "Curry" => "blue",
+            "Pizza" => "red",
+            "Salad" => "green",
+            _ => throw new ArgumentException("Invalid category")
+        };
+    }
+
+    private string GetImagePath(string category)
+    {
+        return category switch
+        {
+            "Pasta" => "./Images/Pasta.png",
+            "Curry" => "./Images/Curry.png",
+            "Pizza" => "./Images/Pizza.png",
+            "Salad" => "./Images/Salad.png",
+            _ => throw new ArgumentException("Invalid category")
+        };
     }
 }
