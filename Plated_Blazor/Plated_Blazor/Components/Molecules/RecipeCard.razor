@@ -1,9 +1,10 @@
 ﻿@using Plated_Blazor.Components.Atoms;
+@using Plated_Blazor.Client.Models;
 
 <div class="card">
     <img src="https://picsum.photos/290/130"
          alt="Recipe Image" />
-    <h2 class="title">Spaghetti Carbonara</h2>
+    <h2 class="title">@recipe.Title</h2>
     <Tag TagText="Pasta" TagColor="teal" />
     <ul class="ingredients">
         <li>Spaghetti</li>
@@ -15,5 +16,6 @@
 </div>
 
 @code {
-
+    [Parameter, EditorRequired]
+    public Recipe recipe { get; set; } = new Recipe();
 }
