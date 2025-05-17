@@ -21,9 +21,21 @@
     margin-bottom: 16px;
 }
 
+::deep .hide{
+    display:none;
+}
+
 ::deep .input-text {
     height: 50px;
     width: 100%;
+    font-size: 1.2rem;
+    border: 2px solid #decbb7;
+    border-radius: 5px;
+}
+
+::deep .input-material{
+    height: 50px;
+    width: 80%;
     font-size: 1.2rem;
     border: 2px solid #decbb7;
     border-radius: 5px;

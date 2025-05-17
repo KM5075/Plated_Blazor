@@ -1,5 +1,6 @@
 using Plated_Blazor.Components;
 using Plated_Blazor.Data;
+using Plated_Blazor.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddDbContext<Planted_BlazorContext>(options =>
    options.UseSqlite(builder.Configuration.GetConnectionString("Plated_BlazorContext") ?? throw new InvalidOperationException("Connection string 'Plated_BlazorContext' not found.")));
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -29,6 +32,8 @@ else
 app.UseHttpsRedirection();
 
 app.UseAntiforgery();
+
+app.MapRecipeItemEndpoints();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()

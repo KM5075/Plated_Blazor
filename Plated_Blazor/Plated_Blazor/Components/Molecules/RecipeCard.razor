@@ -1,19 +1,20 @@
 ﻿@using Plated_Blazor.Components.Atoms;
+@using Plated_Blazor.Client.Models;
 
 <div class="card">
-    <img src="https://picsum.photos/290/130"
-         alt="Recipe Image" />
-    <h2 class="title">Spaghetti Carbonara</h2>
-    <Tag TagText="Pasta" TagColor="teal" />
+    <img src="@recipe.ImageUrl"
+    alt="Recipe Image" />
+    <h2 class="title">@recipe.Title</h2>
+    <Tag TagText="@recipe.Category" TagColor="@recipe.CategoryColor" />
     <ul class="ingredients">
-        <li>Spaghetti</li>
-        <li>Eggs</li>
-        <li>Pancetta</li>
-        <li>Parmesan Cheese</li>
-        <li>Black Pepper</li>
+        @foreach (var ingredient in recipe.Material.Split('$'))
+        {
+            <li>@ingredient.Trim()</li>
+        }
     </ul>
 </div>
 
 @code {
-
+    [Parameter, EditorRequired]
+    public Recipe recipe { get; set; } = new Recipe();
 }
