@@ -2,8 +2,12 @@
 @rendermode InteractiveServer
 
 @inject NavigationManager NavigationManager
+@inject Planted_BlazorContext DbContext
 
+@using Microsoft.EntityFrameworkCore
 @using Plated_Blazor.Client.Components.Share.Atoms
+@using Plated_Blazor.Client.Models
+@using Plated_Blazor.Data
 @using Plated_Blazor.Components.Molecules
 
 <PageTitle>Home</PageTitle>
@@ -15,18 +19,32 @@
 
         <PrimaryButton ButtonText="Add Racipe" OnClick="AddRecipePage" />
 
-        <div class="card-list">
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-        </div>
-
+        @if (newRecipe.Count == 0)
+        {
+            <p>Loading ...</p>
+        }
+        else
+        {
+            <div class="card-list">
+                @foreach (var recipe in newRecipe)
+                {
+                    <RecipeCard recipe="recipe" />
+                }
+            </div>
+        }
     </div>
 </div>
 
 @code {
+    private List<Recipe> newRecipe = new List<Recipe>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate fetching data from a database or API
+        await Task.Delay(1000);
+        newRecipe = await DbContext.Recipes.ToListAsync(); 
+    }
+
     private void AddRecipePage()
     {
         NavigationManager.NavigateTo("/add-recipe");
