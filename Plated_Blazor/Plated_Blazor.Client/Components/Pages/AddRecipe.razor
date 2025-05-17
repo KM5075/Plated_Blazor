@@ -1,15 +1,16 @@
 ﻿@page "/add-recipe"
 @rendermode InteractiveWebAssembly
 @inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
 @using Plated_Blazor.Client.Components.Share.Atoms
 @using Plated_Blazor.Client.Models
 
 <div class="center">
     <div>
         <h1 class="page-title">AddRecipe</h1>
-
         <EditForm Model="newRecipe" OnValidSubmit="AddRecipePage" FormName="Add">
             <DataAnnotationsValidator />
+
             <div class="form-group">
                 <label for="recipeTitle" class="form-lable">
                     Title
@@ -18,6 +19,7 @@
                 <InputText id="recipeTitle" @bind-Value="newRecipe.Title" class="input-text" />
                 <ValidationMessage For="@(() => newRecipe.Title)" />
             </div>
+
             <div class="form-group">
                 <label for="recipeCateggory" class="form-lable">
                     Category
@@ -28,22 +30,32 @@
                     <option value="Pasta">Pasta</option>
                     <option value="Curry">Curry</option>
                     <option value="Pizza">Pizza</option>
-                    <option value="Salada">Salad</option>
+                    <option value="Salad">Salad</option>
                 </InputSelect>
                 <ValidationMessage For="@(() => newRecipe.Category)" />
             </div>
+
             <div class="form-group">
                 <label for="recipeMaterial" class="form-lable">
                     Material
                 </label>
                 <br />
-                <InputText id="recipeMaterial" class="input-big-text" @bind-Value="newRecipe.Material" />
+                <InputText class="input-material" @bind-Value="newMaterial" />
+                <PrimaryButton ButtonText="Add Materal" OnClick="AddMaterial" />
+                <ul>
+                    @foreach (var material in materials)
+                    {
+                        <li>@material</li>
+                    }
+                </ul>
+                <InputText id="recipeMaterial" class="input-big-text" @bind-Value="newRecipe.Material" hidden />
                 <ValidationMessage For="@(() => newRecipe.Material)" />
             </div>
 
             <SubmitButton ButtonText="Add" />
             <PrimaryButton ButtonText="Home" OnClick="RedirectToHome" />
         </EditForm>
+        <p>@error</p>
     </div>
 </div>
 
@@ -52,6 +64,12 @@
 
     private Recipe newRecipe = new Recipe();
 
+    private List<string> materials = new List<string>();
+
+    private string newMaterial = string.Empty;
+
+    private string error = string.Empty;
+
     private void RedirectToHome()
     {
         NavigationManager.NavigateTo("/");
@@ -59,6 +77,28 @@
 
     private void AddRecipePage()
     {
+        try
+        {
+            newRecipe.Id = 0;
+            newRecipe.CategoryColor = SetColor(newRecipe.Category);
+            newRecipe.ImageUrl = GetImagePath(newRecipe.Category);
+
+            HttpClient.PostAsJsonAsync<Recipe>("api/recipe", newRecipe);
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            error = $"Error: {e.Message}.Please reflash.";
+        }
+    }
+
+    private void AddMaterial()
+    {
+        if (string.IsNullOrWhiteSpace(newMaterial)) { return; }
+        materials.Add(newMaterial);
+        newRecipe.Material = string.Join('$', materials);
+        newMaterial = string.Empty;
+    }
 
     private string SetColor(string category)
     {

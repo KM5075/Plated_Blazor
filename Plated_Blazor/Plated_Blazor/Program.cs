@@ -13,6 +13,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContext<Planted_BlazorContext>(options =>
    options.UseSqlite(builder.Configuration.GetConnectionString("Plated_BlazorContext") ?? throw new InvalidOperationException("Connection string 'Plated_BlazorContext' not found.")));
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.  
