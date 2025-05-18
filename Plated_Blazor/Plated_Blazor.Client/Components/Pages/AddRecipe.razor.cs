@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Plated_Blazor.Client.Models;
+using Plated_Blazor.Client.Services;
 using System.Net.Http.Json;
 
 namespace Plated_Blazor.Client.Components.Pages;
@@ -8,6 +9,7 @@ public partial class AddRecipe
 {
     [Inject] public HttpClient HttpClient { get; set; } = default!;
     [Inject] public NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] public IApiService ApiService { get; set; } = default!;
 
     public Recipe newRecipe = new Recipe();
 
@@ -30,7 +32,7 @@ public partial class AddRecipe
             newRecipe.CategoryColor = SetColor(newRecipe.Category);
             newRecipe.ImageUrl = GetImagePath(newRecipe.Category);
 
-            await HttpClient.PostAsJsonAsync<Recipe>("api/recipe", newRecipe);
+            await ApiService.PostRecipe(newRecipe);
             NavigationManager.NavigateTo("/");
         }
         catch (Exception e)
