@@ -1,9 +1,6 @@
 ﻿@page "/add-recipe"
 @rendermode InteractiveWebAssembly
-@inject NavigationManager NavigationManager
-@inject HttpClient HttpClient
 @using Plated_Blazor.Client.Components.Share.Atoms
-@using Plated_Blazor.Client.Models
 
 <div class="center">
     <div>
@@ -58,69 +55,3 @@
         <p>@error</p>
     </div>
 </div>
-
-
-@code {
-
-    private Recipe newRecipe = new Recipe();
-
-    private List<string> materials = new List<string>();
-
-    private string newMaterial = string.Empty;
-
-    private string error = string.Empty;
-
-    private void RedirectToHome()
-    {
-        NavigationManager.NavigateTo("/");
-    }
-
-    private void AddRecipePage()
-    {
-        try
-        {
-            newRecipe.Id = 0;
-            newRecipe.CategoryColor = SetColor(newRecipe.Category);
-            newRecipe.ImageUrl = GetImagePath(newRecipe.Category);
-
-            HttpClient.PostAsJsonAsync<Recipe>("api/recipe", newRecipe);
-            NavigationManager.NavigateTo("/");
-        }
-        catch (Exception e)
-        {
-            error = $"Error: {e.Message}.Please reflash.";
-        }
-    }
-
-    private void AddMaterial()
-    {
-        if (string.IsNullOrWhiteSpace(newMaterial)) { return; }
-        materials.Add(newMaterial);
-        newRecipe.Material = string.Join('$', materials);
-        newMaterial = string.Empty;
-    }
-
-    private string SetColor(string category)
-    {
-        return category switch
-        {
-            "Pasta" => "teal",
-            "Curry" => "blue",
-            "Pizza" => "red",
-            "Salad" => "green",
-            _ => throw new ArgumentException("Invalid category")
-        };
-    }
-
-    private string GetImagePath(string category)
-    {
-        return category switch
-        {
-            "Pasta" => "./Images/Pasta.png",
-            "Curry" => "./Images/Curry.png",
-            "Pizza" => "./Images/Pizza.png",
-            "Salad" => "./Images/Salad.png",
-            _ => throw new ArgumentException("Invalid category")
-        };
-    }
-}

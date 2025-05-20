@@ -2,6 +2,8 @@ using Plated_Blazor.Components;
 using Plated_Blazor.Data;
 using Plated_Blazor.Endpoints;
 using Microsoft.EntityFrameworkCore;
+using Plated_Blazor.Services;
+using Plated_Blazor.Client.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<Planted_BlazorContext>(options =>
    options.UseSqlite(builder.Configuration.GetConnectionString("Plated_BlazorContext") ?? throw new InvalidOperationException("Connection string 'Plated_BlazorContext' not found.")));
 
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<IApiService, DummyApiService>();
 
 var app = builder.Build();
 

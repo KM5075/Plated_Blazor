@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plated_Blazor", "Plated_Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plated_Blazor.Client", "Plated_Blazor\Plated_Blazor.Client\Plated_Blazor.Client.csproj", "{9A126C35-93D4-4DD5-AC47-361187142929}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plated_Blazor.Client.Tests", "Plated_Blazor\Plated_Blazor.Client.Tests\Plated_Blazor.Client.Tests.csproj", "{62C4F617-51CC-4AA9-83D6-371CB987E2CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9A126C35-93D4-4DD5-AC47-361187142929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A126C35-93D4-4DD5-AC47-361187142929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A126C35-93D4-4DD5-AC47-361187142929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C4F617-51CC-4AA9-83D6-371CB987E2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C4F617-51CC-4AA9-83D6-371CB987E2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C4F617-51CC-4AA9-83D6-371CB987E2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C4F617-51CC-4AA9-83D6-371CB987E2CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
